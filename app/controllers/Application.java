@@ -12,12 +12,12 @@ import models.*;
 
 public class Application extends Controller {
 
-	public static Facebook facebook = new Facebook(
-			"https://graph.facebook.com/oauth/authorize",
-			"https://graph.facebook.com/oauth/access_token",
-			renderArgs.get("facebookAppid").toString(),
-			renderArgs.get("facebookAppsecret").toString()
-	);
+    public static Facebook facebook = new Facebook(
+            "https://graph.facebook.com/oauth/authorize",
+            "https://graph.facebook.com/oauth/access_token",
+            System.getenv("FACEBOOK_APP_ID"),
+            System.getenv("FACEBOOK_APP_SECRET")
+    );
 
     public static void index() {
         User user = User.findById(session.get("id"));
@@ -33,9 +33,9 @@ public class Application extends Controller {
             Facebook.Response response = facebook.retrieveAccessToken(play.mvc.Router.getFullUrl("Application.permission"));
             session.put("access_token", response.accessToken);
             index();
-    	}
-    	String scope = "email";
-    	facebook.retrieveVerificationCode(play.mvc.Router.getFullUrl("Application.permission"), scope);
+        }
+        String scope = "email";
+        facebook.retrieveVerificationCode(play.mvc.Router.getFullUrl("Application.permission"), scope);
     }
     
     /**
@@ -43,19 +43,19 @@ public class Application extends Controller {
      */
     @Before(unless="permission")
     static void checkAuthentication() {
-    	String accessToken = session.get("access_token");
-    	if (accessToken == null) {
-    		permission();
-    		accessToken = session.get("access_token");
-    	}
-    	JsonObject me = null;
-    	me = facebook.getInfo(accessToken);
-    	User user = User.find("byFacebook_id", me.get("id").getAsInt()).first();
-    	if (user == null) {
-    		user = new User(me.get("id").getAsString());
-    		user.save();
-    	}
-    	session.put("id", user.id);
+        String accessToken = session.get("access_token");
+        if (accessToken == null) {
+            permission();
+            accessToken = session.get("access_token");
+        }
+        JsonObject me = null;
+        me = facebook.getInfo(accessToken);
+        User user = User.find("byFacebookId", me.get("id").getAsInt()).first();
+        if (user == null) {
+            user = new User(me.get("id").getAsString());
+            user.save();
+        }
+        session.put("id", user.id);
     }
 
 }
