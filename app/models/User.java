@@ -20,7 +20,6 @@ public class User extends GenericModel {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     public String id;
 
-    @Column(name="facebook_id")
     public String facebookId;
 
     @OneToMany(mappedBy="user", cascade=CascadeType.ALL)
