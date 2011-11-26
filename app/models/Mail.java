@@ -4,6 +4,9 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
+
 import play.db.jpa.*;
 
 @Entity
@@ -28,9 +31,32 @@ public class Mail extends Model {
         this.template = template;
     }
 
+    public String from()
+    {
+        return this.user.email();
+    }
+
     public boolean send() {
-        this.sendAt = new Date();
-        save();
+        try {
+            SimpleEmail email = new SimpleEmail();
+            email.setFrom(from());
+            email.addTo(this.to);
+            if (this.cc != null) {
+                email.addCc(this.cc);
+            }
+            if (this.bcc != null) {
+                email.addBcc(this.bcc);
+            }
+            email.setSubject(this.template.subject);
+            email.setMsg(this.template.body);
+            play.libs.Mail.send(email); 
+
+            this.sendAt = new Date();
+            save();
+        } catch (EmailException e) {
+           e.printStackTrace();
+           return false;
+        }
         return true;
     }
 
