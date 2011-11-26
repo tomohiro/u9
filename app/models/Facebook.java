@@ -8,9 +8,13 @@ import play.mvc.results.Redirect;
 
 public class Facebook extends OAuth2 {
 
-	public Facebook(String authorizationURL, String accessTokenURL,
-			String clientid, String secret) {
-		super(authorizationURL, accessTokenURL, clientid, secret);
+	public final static String AUTH_URL = "https://graph.facebook.com/oauth/authorize";
+	public final static String ACCESS_TOKEN_URL = "https://graph.facebook.com/oauth/access_token";
+	public final static String CLIENT_ID = "144291362341713";
+	public final static String SECRET = "da8ad6475b93fc9b6e39e2bdfa1ccdc0";
+
+	public Facebook() {
+		super(AUTH_URL, ACCESS_TOKEN_URL, CLIENT_ID, SECRET);
 	}
 
 	/**
@@ -40,8 +44,4 @@ public class Facebook extends OAuth2 {
 	public void setClientid(String _clientid) {
 		clientid = _clientid;
 	}	
-	
-    public static JsonObject getInfo(String accessToken) {
-    	return WS.url("https://graph.facebook.com/me?access_token=%s", WS.encode(accessToken)).get().getJson().getAsJsonObject();
-    }
 }
