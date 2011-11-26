@@ -7,7 +7,7 @@ public class TemplateTest extends UnitTest {
 
     @Test
     public void create() {
-        User user = new User().save();
+        User user = new User("facebookId").save();
 
         String name = "My Template Name";
         String subject = "My Mail Subject";
