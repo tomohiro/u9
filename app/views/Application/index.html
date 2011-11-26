@@ -1,4 +1,8 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{welcome /}
+<h1>${user.id}</h1>
+<ul>
+<li>${me.get('email')}</li>
+<li>${me.get('name')}</li>
+</ul>
