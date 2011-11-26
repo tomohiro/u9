@@ -15,8 +15,10 @@ public class Application extends Controller {
     public static Facebook facebook = new Facebook(
             "https://graph.facebook.com/oauth/authorize",
             "https://graph.facebook.com/oauth/access_token",
-            System.getenv("FACEBOOK_APP_ID"),
-            System.getenv("FACEBOOK_APP_SECRET")
+            "144291362341713",
+            "da8ad6475b93fc9b6e39e2bdfa1ccdc0"
+            //renderArgs.get("facebookAppid").toString(),
+            //renderArgs.get("facebookAppsecret").toString()
     );
 
     public static void index() {
@@ -32,6 +34,7 @@ public class Application extends Controller {
         if (Facebook.isCodeResponse()) {
             Facebook.Response response = facebook.retrieveAccessToken(play.mvc.Router.getFullUrl("Application.permission"));
             session.put("access_token", response.accessToken);
+            //Logger.info(response.error.toString());
             index();
         }
         String scope = "email";
@@ -44,13 +47,14 @@ public class Application extends Controller {
     @Before(unless="permission")
     static void checkAuthentication() {
         String accessToken = session.get("access_token");
+        Logger.info(accessToken);
         if (accessToken == null) {
             permission();
             accessToken = session.get("access_token");
         }
         JsonObject me = null;
         me = facebook.getInfo(accessToken);
-        User user = User.find("byFacebookId", me.get("id").getAsInt()).first();
+        User user = User.find("byFacebookId", me.get("id").getAsString()).first();
         if (user == null) {
             user = new User(me.get("id").getAsString());
             user.save();
