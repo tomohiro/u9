@@ -29,9 +29,15 @@ public class User extends GenericModel {
     public List<Template> templates;
 
     public User(String facebookId) {
-        this.mails = new ArrayList<Mail>();
-        this.templates = new ArrayList<Template>();
         this.facebookId = facebookId;
+
+        this.mails     = new ArrayList<Mail>();
+        this.templates = new ArrayList<Template>();
+    }
+
+    /** @TODO return user email from facebook api */
+    public String email() {
+        return "example@example.com";
     }
 
 }
