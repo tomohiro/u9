@@ -51,10 +51,9 @@ public class Mail extends Model {
             email.setFrom(from());
             if (this.to != null) {
                 for (String to: Mail.getEmailAddressList(this.to)) {
-                    email.addBcc(to);
+                    email.addTo(to);
                 }
             }
-            email.addTo(this.to);
             if (this.cc != null) {
                 for (String cc: Mail.getEmailAddressList(this.cc)) {
                     email.addCc(cc);
