@@ -6,7 +6,6 @@ application.mode=dev
 application.secret=TYG0clSQWYWdwbSanyRXejiGYkkMH2F099RHaKjYNeX4qNC1OXARF60PW8zeWo4G
 
 date.format=yyyy-MM-dd
-db=mem
 attachments.path=data/attachments
 
 mail.smtp=mock
