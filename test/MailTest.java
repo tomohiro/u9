@@ -10,7 +10,7 @@ import models.*;
 public class MailTest extends UnitTest {
 
     @Test
-    public void createMail() {
+    public void create() {
         User testUser = new User("facebookId").save();
         Template testTemplate = new Template("name", "test mail subject", "body", testUser).save();
 
