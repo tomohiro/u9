@@ -10,7 +10,7 @@ import com.google.gson.JsonObject;
 
 import models.*;
 
-public class Application extends Controller {
+public class Authentication extends Controller {
 
     public static Facebook facebook = new Facebook();
 
@@ -20,27 +20,15 @@ public class Application extends Controller {
         List<Template> templates = Template.find("user_id is null").fetch();
         render(user, mails, templates);
     }
-
+    
     public static void mail(int mailid) {
-        Mail mail = Mail.findById(mailid);
-        render(mail);
+    	Mail mail = Mail.findById(mailid);
+    	render(mail);
     }
-
-    public static void template(Long templateid) {
-        Template template = Template.findById(templateid);
-        render(template);
-    }
-
-    public static void copy(int mailid, Long templateid) {
-        Mail mail;
-        Template template = Template.findById(templateid);
-        User user = User.findById(session.get("id"));
-        if (mailid == -1) {
-            mail = new Mail(template, user);
-        } else {
-            mail = Mail.find("byUserIdAndTemplateId", user.id, template.id).first();
-        }
-        render(template, mail);
+    
+    public static void template(int templateid) {
+    	Template template = Template.findById(templateid);
+    	render(template);
     }
 
     /**

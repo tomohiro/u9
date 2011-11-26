@@ -5,6 +5,13 @@
 # Home page
 GET     /                                       Application.index
 
+# Mail description
+GET     /mail/{mailid}                          Application.mail
+GET     /template/{templateid}                  Application.template
+
+# Mail form
+GET     /copy/                                  Application.copy
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

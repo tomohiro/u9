@@ -1,0 +1,13 @@
+Template(wholeday):
+  name: 一日休む
+  subject: 本日はお休みします
+  body: >
+          お疲れ様です。
+          本日、体調不良のためお休みします。
+
+Template(afternoon):
+  name: 午後出社
+  subject: 午前中お休みします
+  body: >
+          お疲れ様です。
+          本日私用につき午後出社します。
