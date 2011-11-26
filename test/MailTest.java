@@ -23,4 +23,14 @@ public class MailTest extends UnitTest {
         assertEquals(findMail.user.facebookId, testUser.facebookId);
     }
 
+    @Test
+    public void send() {
+        User testUser = new User("facebookId").save();
+        Template testTemplate = new Template("name", "Play! test mail", "This mail is Play! test message.", testUser).save();
+
+        Mail mail = new Mail(testTemplate, testUser);
+        mail.to = "tomohiro.t@gmail.com";
+        assertEquals(true, mail.send());
+    }
+
 }
