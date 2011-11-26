@@ -1,0 +1,19 @@
+application.name=u9
+application.mode=dev
+
+%prod.application.mode=prod
+
+application.secret=TYG0clSQWYWdwbSanyRXejiGYkkMH2F099RHaKjYNeX4qNC1OXARF60PW8zeWo4G
+
+date.format=yyyy-MM-dd
+db=mem
+attachments.path=data/attachments
+
+mail.smtp=mock
+
+# test configuration
+%test.application.mode=dev
+%test.db.url=jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+%test.jpa.ddl=create
+%test.mail.smtp=mock
+%test.db=mem
