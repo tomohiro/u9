@@ -44,7 +44,7 @@ public class User extends GenericModel {
     }
 
     /** @TODO return user email from facebook api */
-    public String email() {
+    /*public String email() {
         return "example@example.com";
-    }
+    }*/
 }

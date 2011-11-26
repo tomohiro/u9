@@ -26,6 +26,8 @@ public class MailTest extends UnitTest {
     @Test
     public void send() {
         User testUser = new User("facebookId").save();
+        testUser.email = "example@example.com";
+        
         Template testTemplate = new Template("name", "Play! test mail", "This mail is Play! test message.", testUser).save();
 
         Mail mail = new Mail(testTemplate, testUser);

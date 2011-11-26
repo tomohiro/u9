@@ -14,11 +14,4 @@ public class UserTest extends UnitTest {
         assertEquals(findUser.id, user.id);
     }
 
-    @Test
-    public void email() {
-        User user = new User("facebookId").save();
-
-        assertEquals("example@example.com", user.email());
-    }
-
 }

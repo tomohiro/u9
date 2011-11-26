@@ -42,7 +42,7 @@ public class Mail extends Model {
 
     public String from()
     {
-        return this.user.email();
+        return this.user.email;
     }
 
     public boolean send() {
