@@ -11,15 +11,17 @@ public class MailTest extends UnitTest {
     @Test
     public void createMail() {
         User testUser = new User();
-        Template testTemplate = new Template("name", "subject", "body", testUser);
+        testUser.save();
+        Template testTemplate = new Template("name", "test mail subject", "body", testUser);
+        testTemplate.save();
 
         Mail mail = new Mail(testTemplate, testUser);
         mail.save();
 
-        Mail findMail = Mail.findById(mail);
+        Mail findMail = Mail.findById(mail.id);
 
-        assertEquals(findMail.template.subject, "test mail subject");
-        assertEquals(findMail.user.facebookAccessToken, "test access token");
+        assertEquals(findMail.template.subject, testTemplate.subject);
+        assertEquals(findMail.user.facebookAccessToken, testUser.facebookAccessToken);
     }
 
 }

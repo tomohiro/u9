@@ -14,7 +14,7 @@ public class TemplateTest extends UnitTest {
         Template template = new Template(name, subject, "body", user);
         template.save();
 
-        Template findTemplte = Template.findById(template);
+        Template findTemplte = Template.findById(template.id);
 
         assertEquals(findTemplte.name, name);
     }

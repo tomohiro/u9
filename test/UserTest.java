@@ -12,7 +12,7 @@ public class UserTest extends UnitTest {
         User user = new User(facebookAccessToken);
         user.save();
 
-        User findUser = User.findById(user);
+        User findUser = User.findById(user.id);
 
         assertEquals(findUser.facebookAccessToken, facebookAccessToken);
     }
