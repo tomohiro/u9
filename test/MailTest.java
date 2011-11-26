@@ -10,7 +10,7 @@ import models.*;
 public class MailTest extends UnitTest {
 
     @Test
-    public void create() {
+    public void createMail() {
         User testUser = new User().save();
         Template testTemplate = new Template("name", "test mail subject", "body", testUser).save();
 
