@@ -49,17 +49,17 @@ public class Mail extends Model {
         try {
             SimpleEmail email = new SimpleEmail();
             email.setFrom(from());
-            if (this.to != null) {
+            if (this.to != null && !this.to.isEmpty()) {
                 for (String to: Mail.getEmailAddressList(this.to)) {
                     email.addTo(to);
                 }
             }
-            if (this.cc != null) {
+            if (this.cc != null && !this.cc.isEmpty()) {
                 for (String cc: Mail.getEmailAddressList(this.cc)) {
                     email.addCc(cc);
                 }
             }
-            if (this.bcc != null) {
+            if (this.bcc != null && !this.bcc.isEmpty()) {
                 for (String to: Mail.getEmailAddressList(this.bcc)) {
                     email.addBcc(to);
                 }

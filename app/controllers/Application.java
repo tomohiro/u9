@@ -42,6 +42,18 @@ public class Application extends Controller {
         }
         render(template, mail);
     }
+    
+    public static void send(Mail mail, Template template) {
+    	User user = User.findById(session.get("id"));
+    	template.user = user;
+    	template.save();
+    	mail.user = user;
+        mail.template = template;
+        Logger.info(mail.user.email);
+        mail.save();
+        mail.send();
+        index();
+    }
 
     /**
      * Facebook でのユーザ許可

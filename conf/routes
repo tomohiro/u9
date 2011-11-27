@@ -9,8 +9,11 @@ GET     /                                       Application.index
 GET     /mail/{mailid}                          Application.mail
 GET     /template/{templateid}                  Application.template
 
-# Mail form
-GET     /copy/                                  Application.copy
+# Mailform
+GET     /copy                                   Application.copy
+
+# send mail 
+POST    /send                                   Application.send
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

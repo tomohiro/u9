@@ -8,9 +8,9 @@ import models.*;
 public class Bootstrap extends Job {
  
     public void doJob() {
-    	if(Template.count() == 0) {
-    		Fixtures.load("initial-data.yml");
-    	}
-    }   
- 
+        if(Template.count() == 0) {
+            Fixtures.delete();
+            Fixtures.loadModels("initial-data.yml");
+        }
+    }    
 }

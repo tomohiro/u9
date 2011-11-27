@@ -22,6 +22,8 @@ public class FacebookUser{
     	if (this.json == null) {
     		this.json = WS.url("https://graph.facebook.com/me?access_token=%s", WS.encode(this.accessToken)).get().getJson().getAsJsonObject();
     	}
-    	return this.json.get(key).toString();
+    	String value = this.json.get(key).toString().replaceAll("\"", "");
+    	Logger.info("%s: %s", key, value);
+    	return value;
     }
 }

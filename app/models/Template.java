@@ -19,15 +19,15 @@ public class Template extends Model {
     @ManyToOne
     public User user;
 
-    //@OneToMany(mappedBy="template", cascade=CascadeType.ALL)
-    //public List<Mail> mails;
+    @OneToMany(mappedBy="template", cascade=CascadeType.ALL)
+    public List<Mail> mails;
 
     public Template(String name, String subject, String body, User user) {
         this.name    = name;
         this.subject = subject;
         this.body    = body;
         this.user    = user;
-        //this.mails   = new ArrayList<Mail>();
+        this.mails   = new ArrayList<Mail>();
     }
 
 }
