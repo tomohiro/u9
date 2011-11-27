@@ -13,6 +13,7 @@ import play.data.validation.*;
 @Table(name="mails")
 public class Mail extends Model {
 
+    @Required
     @Email
     public String to;
 
@@ -44,10 +45,8 @@ public class Mail extends Model {
         try {
             SimpleEmail email = new SimpleEmail();
             email.setFrom(this.user.email);
-            if (this.to != null && !this.to.isEmpty()) {
-                for (String to: Mail.getEmailAddressList(this.to)) {
-                    email.addTo(to);
-                }
+            for (String to: Mail.getEmailAddressList(this.to)) {
+                email.addTo(to);
             }
             if (this.cc != null && !this.cc.isEmpty()) {
                 for (String cc: Mail.getEmailAddressList(this.cc)) {
