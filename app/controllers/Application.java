@@ -51,13 +51,13 @@ public class Application extends Controller {
         mail.template = template;
         mail.save();
         mail.send();
-        index();
+        render(mail);
     }
     
     public static void sendExistMail(String mailid) {
     	Mail mail = Mail.findById(Long.parseLong(mailid));
     	mail.send();
-    	index();
+    	render("Application/send.html", mail);
     }
 
     /**

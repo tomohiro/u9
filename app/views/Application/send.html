@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div data-role="page" id="page2" data-add-back-btn="true" data-theme="u">
+  <div data-role="header">
+    <h1>${mail.template.name}</h1>
+  </div>
+  <div data-role="content">
+    <p>以下の内容で送信されました。</p>
+    <p>TO: ${mail.to}</p>
+    <p>CC: ${mail.cc}</p>
+    <p>BCC: ${mail.bcc}</p>
+    <p class="mtitle">件名:${mail.template.subject}</p>
+    <p>${mail.template.body}</p>
+    <input type="button" value="OK" data-icon="plus" onClick="location.href='@{Application.index}'">
+  </div>
+  <div data-role="footer">
+    <h4>copyright&copy;u9</h4>
+  </div>
+</div>
