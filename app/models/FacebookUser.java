@@ -23,7 +23,6 @@ public class FacebookUser{
     		this.json = WS.url("https://graph.facebook.com/me?access_token=%s", WS.encode(this.accessToken)).get().getJson().getAsJsonObject();
     	}
     	String value = this.json.get(key).toString().replaceAll("\"", "");
-    	Logger.info("%s: %s", key, value);
     	return value;
     }
 }

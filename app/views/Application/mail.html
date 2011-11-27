@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div data-role="page" id="page2" data-add-back-btn="true" data-theme="u">
+  <div data-role="header">
+    <h1>${mail.template.name}</h1>
+  </div>
+  <div data-role="content">
+    <p>TO: ${mail.to}</p>
+    <p>CC: ${mail.cc}</p>
+    <p>BCC: ${mail.bcc}</p>
+    <p class="mtitle">件名:${mail.template.subject}</p>
+    <p>${mail.template.body}</p>
+    <form action="@{Application.sendExistMail}" method="post">
+      <input type="hidden" name="mailid" value="${mail.id}"/>
+      <div data-role="fieldcontain">
+        <input type="submit" value="Send" data-icon="arrow-r">
+        <input type="button" value="Copy" data-icon="plus" onClick="location.href='@{Application.copy(mail.id, mail.template.id)}'">
+      </div>
+    </form>
+  </div>
+  <div data-role="footer">
+    <h4>copyright&copy;u9</h4>
+  </div>
+</div>

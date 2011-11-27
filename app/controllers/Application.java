@@ -21,8 +21,9 @@ public class Application extends Controller {
         render(user, mails, templates);
     }
 
-    public static void mail(int mailid) {
+    public static void mail(Long mailid) {
         Mail mail = Mail.findById(mailid);
+        Logger.info(mail.toString());
         render(mail);
     }
 
@@ -31,15 +32,16 @@ public class Application extends Controller {
         render(template);
     }
 
-    public static void copy(int mailid, Long templateid) {
+    public static void copy(Long mailid, Long templateid) {
         Mail mail;
         Template template = Template.findById(templateid);
         User user = User.findById(session.get("id"));
         if (mailid == -1) {
             mail = new Mail(template, user);
         } else {
-            mail = Mail.find("byUserIdAndTemplateId", user.id, template.id).first();
+            mail = Mail.findById(mailid);
         }
+        Logger.info(template.toString());
         render(template, mail);
     }
     
@@ -53,6 +55,12 @@ public class Application extends Controller {
         mail.save();
         mail.send();
         index();
+    }
+    
+    public static void sendExistMail(String mailid) {
+    	Mail mail = Mail.findById(Long.parseLong(mailid));
+    	mail.send();
+    	index();
     }
 
     /**

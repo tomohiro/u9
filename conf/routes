@@ -12,8 +12,11 @@ GET     /template/{templateid}                  Application.template
 # Mailform
 GET     /copy                                   Application.copy
 
-# send mail 
+# send new mail 
 POST    /send                                   Application.send
+
+# send exist mail
+POST    /sendmail                               Application.sendExistMail
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
