@@ -16,14 +16,13 @@ public class Application extends Controller {
 
     public static void index() {
         User user = User.findById(session.get("id"));
-        List<Mail> mails = Mail.find("user_id = ? order by send_at", user.id).fetch();
+        List<Mail> mails = Mail.find("user_id = ? order by send_at DESC", user.id).fetch();
         List<Template> templates = Template.find("user_id is null").fetch();
         render(user, mails, templates);
     }
 
     public static void mail(Long mailid) {
         Mail mail = Mail.findById(mailid);
-        Logger.info(mail.toString());
         render(mail);
     }
 
@@ -41,7 +40,6 @@ public class Application extends Controller {
         } else {
             mail = Mail.findById(mailid);
         }
-        Logger.info(template.toString());
         render(template, mail);
     }
     
@@ -51,7 +49,6 @@ public class Application extends Controller {
     	template.save();
     	mail.user = user;
         mail.template = template;
-        Logger.info(mail.user.email);
         mail.save();
         mail.send();
         index();
