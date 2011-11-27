@@ -88,7 +88,8 @@ public class Application extends Controller {
         FacebookUser fbUser = new FacebookUser(accessToken);
         User user = User.find("byFacebookId", fbUser.get("id")).first();
         if (user == null) {
-            user = new User(fbUser.get("id"));
+            user = new User();
+            user.facebookId = fbUser.get("id");
         }
         user.name = fbUser.get("name");
         user.email = fbUser.get("email");
