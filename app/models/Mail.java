@@ -15,12 +15,15 @@ public class Mail extends Model {
 
     @Required
     @Email
+    @Column(name="to_address")
     public String to;
 
     @Email
+    @Column(name="cc_address")
     public String cc;
 
     @Email
+    @Column(name="bcc_address")
     public String bcc;
 
     @Column(name="send_at")
