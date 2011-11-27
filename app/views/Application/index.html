@@ -8,10 +8,10 @@
   <div data-role="content">
     <ul data-role="listview" data-inset="true" data-filter="true">
       #{list items:mails, as:'mail'}
-      <li><a href=@{Application.mail(mail.id)}>${mail.template.name}</a></li>
+      <li><a href=@{Application.mail(mail.id)}>[mail] ${mail.template.name}</a></li>
       #{/list}
       #{list items:templates, as:'template'}
-      <li><a href=@{Application.template(template.id)}>${template.name}</a></li>
+      <li><a href=@{Application.template(template.id)}>[template] ${template.name}</a></li>
       #{/list}
     </ul>
   </div>
