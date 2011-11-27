@@ -127,10 +127,31 @@
 	color: #B00A0E;
 	text-shadow: 0 /*{c-bup-shadow-x}*/ 1px /*{c-bup-shadow-y}*/ 1px /*{c-bup-shadow-radius}*/ #383838 /*{c-bup-shadow-color}*/;
 }
-.ui-body-u .ui-header h1 {
+.ui-body-u .ui-header .logo {
+	color: #B00A0E;
+	text-shadow: 0 /*{c-bup-shadow-x}*/ 1px /*{c-bup-shadow-y}*/ 1px /*{c-bup-shadow-radius}*/ #383838 /*{c-bup-shadow-color}*/;
+/*
 	text-indent: -9999px;
-	width: 64px;
-	height: 66px;
-	background: url(u9logo.png) no-repeat center center;
+	width: 44px;
+	height: 46px;
+	background: url("u9logo.png") no-repeat center center;
 	margin: 10px auto 4px;
+*/}
+/*@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-header .ui-title .logo {
+		background: url("u9logo_x2.png") no-repeat center center !important;
+		background-size: 44px 46px;
+	}
+}
+*/
+.ui-body-u .ui-header::after{
+ content:url("u9logos.png");
+  position:absolute;
+  right:5px;
+  top:0px;
+  padding-bottom: 10px;
+  padding-top: 2px;
+  padding-right:5px;
+  width: 36px;
+  height: 37px;
 }
