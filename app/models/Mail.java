@@ -40,15 +40,10 @@ public class Mail extends Model {
         return emails.split(",", -1);
     }
 
-    public String from()
-    {
-        return this.user.email;
-    }
-
     public boolean send() {
         try {
             SimpleEmail email = new SimpleEmail();
-            email.setFrom(from());
+            email.setFrom(this.user.email);
             if (this.to != null && !this.to.isEmpty()) {
                 for (String to: Mail.getEmailAddressList(this.to)) {
                     email.addTo(to);
@@ -60,12 +55,13 @@ public class Mail extends Model {
                 }
             }
             if (this.bcc != null && !this.bcc.isEmpty()) {
-                for (String to: Mail.getEmailAddressList(this.bcc)) {
-                    email.addBcc(to);
+                for (String bcc: Mail.getEmailAddressList(this.bcc)) {
+                    email.addBcc(bcc);
                 }
             }
             email.setSubject(this.template.subject);
-            email.setMsg(this.template.body);
+            email.setContent(this.template.body, "text/plain; charset=ISO-2022-JP");
+            email.setCharset("ISO-2022-JP");
             play.libs.Mail.send(email); 
 
             this.sendAt = new Date();
