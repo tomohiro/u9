@@ -10,8 +10,8 @@ public class Facebook extends OAuth2 {
 
 	public final static String AUTH_URL = "https://graph.facebook.com/oauth/authorize";
 	public final static String ACCESS_TOKEN_URL = "https://graph.facebook.com/oauth/access_token";
-	public final static String CLIENT_ID = "144291362341713";
-	public final static String SECRET = "da8ad6475b93fc9b6e39e2bdfa1ccdc0";
+	public final static String CLIENT_ID = "";
+	public final static String SECRET = "";
 
 	public Facebook() {
 		super(AUTH_URL, ACCESS_TOKEN_URL, CLIENT_ID, SECRET);
