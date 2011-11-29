@@ -12,8 +12,6 @@ public class Template extends Model {
 
     public String name;
     public String subject;
-
-    @Lob
     public String body;
 
     @ManyToOne
